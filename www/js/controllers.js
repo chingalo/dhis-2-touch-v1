@@ -1644,7 +1644,7 @@ angular.module('app.controllers', [])
             appInformation: {
                 Name: 'DHIS 2 Touch',
                 Version: '1.04',
-                'App revision': '145f4d0',
+                'App revision': 'b2f4332',
                 'Release status': 'Snapshot'
                 //'Release' 'Snapshot'
             },
