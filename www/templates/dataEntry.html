@@ -1,0 +1,75 @@
+<ion-view title="Data Entry " id="page6" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+        <div class="item item-body " id="dataEntry-list-item-container12">
+            <div class="row" ng-click="organisationUnitsModal.show()" style="padding-top: 0.5%;">
+                <div class="col col-100">
+                    <h3>Organisation Unit</h3>
+                    <div class = "touch-area-selection">
+                        <p ng-if ="data.selectedOrganisationUnit.id">
+                            {{ data.selectedOrganisationUnit.name }}
+                        </p>
+                        <p ng-if ="!data.selectedOrganisationUnit.id">
+                            Touch to select Organisation Unit
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-click="dataEntryFormModal.show()" style="padding-top: 0.5%;">
+                <div class="col col-100">
+                    <h3>Form</h3>
+                    <div class = "touch-area-selection">
+                        <p ng-if ="data.selectedDataSetForm.id">
+                            {{ data.selectedDataSetForm.name }}
+                        </p>
+                        <p ng-if ="!data.selectedDataSetForm.id">
+                            Touch to select form
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-click="periodModal.show()" style="padding-top: 0.5%;">
+                <div class="col col-100">
+                    <h3>Period</h3>
+                    <div class = "touch-area-selection">
+                        <p ng-if ="data.selectedPeriod.name">
+                            {{ data.selectedPeriod.name }}
+                        </p>
+                        <p ng-if ="!data.selectedPeriod.name">
+                            Touch to select period
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if = "data.selectedDataSetForm.id && data.selectedDataSetForm.categoryCombo " class="row">
+                <div ng-if = "data.selectedDataSetForm.categoryCombo.name !='default'" class="col col-100">
+                    <div ng-repeat="category in data.selectedDataSetForm.categoryCombo.categories" ng-click="openDataSetFormDimensionModal($index);">
+                        <h3>{{ category.name }}</h3>
+                        <div class = "touch-area-selection">
+                            <p ng-if ="data.selectedDataSetFormDimension[category.id]">
+                                {{ data.selectedDataSetFormDimension[category.id].name }}
+                            </p>
+                            <p ng-if ="!data.selectedDataSetFormDimension[category.id]">
+                                Touch to select option
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="spacer" style="width: 300px; height: 13px;"></div>
+        <div ng-if="data.selectedPeriod.name && data.selectedDataSetForm.id && data.selectedOrganisationUnit.id" class="item item-body">
+            <p><b>{{ data.selectedDataSetForm.name }}</b></p>
+            <p>Organisation Unit : {{ data.selectedOrganisationUnit.name }}</p>
+            <p>Period : {{ data.selectedPeriod.name }}</p>
+        </div>
+
+        <div class="row" ng-if="data.selectedPeriod.name && data.selectedDataSetForm.id && data.selectedOrganisationUnit.id">
+            <div class="col col-100">
+                <button class="button button-full button-positive" ng-click="redirectToDataEntryForm()">Data Entry</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

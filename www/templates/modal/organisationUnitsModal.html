@@ -1,0 +1,97 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <h2 class="title">Organisation Unit selection</h2>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="organisationUnitsModal.hide()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+    <div class="row">
+      <div class="col col-100">
+
+        <div ng-repeat="orgUnit in data.sortedOrganisationUnits">
+          <div class="item item-icon-left">
+            <i class="icon ion-chevron-right" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && !hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+            <i class=" icon ion-chevron-down" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+            <!--<ion-icon name="ios-folder-outline" ng-if="orgUnit.children.length==0" item-left></ion-icon>-->
+            <span ng-click="setSelectedOrganisationUnit(orgUnit)"   >{{ orgUnit.name }}</span>
+          </div>
+
+
+          <div ng-if="hasOrgUnitChildrenOpened[orgUnit.id]" style="padding-left: 10px">
+
+            <div ng-repeat="orgUnit in orgUnit.children">
+              <div class="item item-icon-left">
+                <i class="icon ion-chevron-right" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && !hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                <i class=" icon ion-chevron-down" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                <!--<ion-icon name="ios-folder-outline" ng-if="orgUnit.children.length==0" item-left></ion-icon>-->
+                <span ng-click="setSelectedOrganisationUnit(orgUnit)"   >{{ orgUnit.name }}</span>
+              </div>
+              <div ng-if="hasOrgUnitChildrenOpened[orgUnit.id]" style="padding-left: 10px">
+
+                <div ng-repeat="orgUnit in orgUnit.children">
+                  <div class="item item-icon-left">
+                    <i class="icon ion-chevron-right" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && !hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                    <i class=" icon ion-chevron-down" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                    <!--<ion-icon name="ios-folder-outline" ng-if="orgUnit.children.length==0" item-left></ion-icon>-->
+                    <span ng-click="setSelectedOrganisationUnit(orgUnit)"   >{{ orgUnit.name }}</span>
+                  </div>
+                  <div ng-if="hasOrgUnitChildrenOpened[orgUnit.id]" style="padding-left: 10px">
+
+                    <div ng-repeat="orgUnit in orgUnit.children">
+                      <div class="item item-icon-left">
+                        <i class="icon ion-chevron-right" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && !hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                        <i class=" icon ion-chevron-down" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                        <!--<ion-icon name="ios-folder-outline" ng-if="orgUnit.children.length==0" item-left></ion-icon>-->
+                        <span ng-click="setSelectedOrganisationUnit(orgUnit)"   >{{ orgUnit.name }}</span>
+                      </div>
+                      <div ng-if="hasOrgUnitChildrenOpened[orgUnit.id]" style="padding-left: 10px">
+
+                        <div ng-repeat="orgUnit in orgUnit.children">
+                          <div class="item item-icon-left">
+                            <i class="icon ion-chevron-right" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && !hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                            <i class=" icon ion-chevron-down" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                            <!--<ion-icon name="ios-folder-outline" ng-if="orgUnit.children.length==0" item-left></ion-icon>-->
+                            <span ng-click="setSelectedOrganisationUnit(orgUnit)"   >{{ orgUnit.name }}</span>
+                          </div>
+                          <div ng-if="hasOrgUnitChildrenOpened[orgUnit.id]" style="padding-left: 10px">
+
+                            <div ng-repeat="orgUnit in orgUnit.children">
+                              <div class="item item-icon-left">
+                                <i class="icon ion-chevron-right" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && !hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                                <i class=" icon ion-chevron-down" ng-click="toggleOrgUnit(orgUnit)" ng-if="orgUnit.children.length>0 && hasOrgUnitChildrenOpened[orgUnit.id]"></i>
+                                <!--<ion-icon name="ios-folder-outline" ng-if="orgUnit.children.length==0" item-left></ion-icon>-->
+                                <span ng-click="setSelectedOrganisationUnit(orgUnit)"   >{{ orgUnit.name }}</span>
+                              </div>
+                              <div ng-if="hasOrgUnitChildrenOpened[orgUnit.id]" style="padding-left: 10px">
+
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+        <ion-item ng-if = "data.sortedOrganisationUnits.length == 0">
+          There is no Organisation Unit to select
+        </ion-item>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

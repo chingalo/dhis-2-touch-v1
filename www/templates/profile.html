@@ -1,0 +1,44 @@
+<ion-view title="Profile" id="page7" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+        <ion-list id="profile-list22" class=" ">
+            <ion-item class="item-divider " id="profile-list-item-divider3">User profile details</ion-item>
+        </ion-list>
+        <div class="item item-body " id="profile-list-item-container23">
+            <div class="list">
+                <div style="text-transform: capitalize;"  ng-repeat="(key,value) in data.userInformation">
+                    <h2>{{ key }}</h2>
+                    <p ng-if="key == 'Birthday'">
+                        {{ data.userInformation[key] | date:'d MMMM yyyy'}}
+                    </p>
+                    <p ng-if="key != 'Birthday'">
+                        {{ data.userInformation[key] }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <ion-list id="profile-list23" class=" ">
+            <ion-item class="item-divider " id="profile-list-item-divider4">List of assigned Organisation Units</ion-item>
+        </ion-list>
+        <div class="item item-body " id="profile-list-item-container24">
+            <div style="text-transform: capitalize;" ng-repeat="assignedOrganisationUnitName in data.assignedOrganisationUnitsNames">
+                <p>{{ $index + 1}}.&nbsp; {{ assignedOrganisationUnitName }} </p>
+            </div>
+        </div>
+        <ion-list id="profile-list24" class=" ">
+            <ion-item class="item-divider " id="profile-list-item-divider5">List of assigned Roles</ion-item>
+        </ion-list>
+        <div class="item item-body " id="profile-list-item-container25">
+            <div style="text-transform: capitalize;" ng-repeat="role in data.userRoles">
+                <p>{{ $index + 1}}.&nbsp; {{ role}} </p>
+            </div>
+        </div>
+        <ion-list id="profile-list25" class=" ">
+            <ion-item class="item-divider " id="profile-list-item-divider6">List of assigned forms</ion-item>
+        </ion-list>
+        <div class="item item-body " id="profile-list-item-container26">
+            <div style="text-transform: capitalize;" ng-repeat="assignedForm in data.assignedForms">
+                <p>{{ $index + 1}}.&nbsp; {{ assignedForm.name}} </p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,64 @@
+<ion-view title="Data Entry Form" id="page17" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+        <div class="spacer" style="width: 300px; height: 14px;"></div>
+        <div class="item item-text-wrap">
+            <h2 align="center">{{ data.selectedDataSet.name }} Data entry form</h2>
+            <p>Organisation Unit : {{ data.selectedOrgUnitObject.name }}</p>
+            <p>Period : {{ data.selectedPeriod.name }}, synced : {{ data.selectedDataSetStorageStatus.online }} Not
+                synced : {{ data.selectedDataSetStorageStatus.local}} </p>
+        </div>
+
+        <div class="spacer" style="width: 100%; height: 5px;"></div>
+        <div class="item item-body " >
+
+            <div ng-if = "data.formRenderingType == 'DEFAULT'">
+                <div class="item item-text-wrap">
+                    <div ng-include="'templates/entryFormPartials/entryFormDefault.html'"></div>
+                </div>
+            </div>
+
+            <div ng-if = "data.formRenderingType == 'SECTION'">
+                <div ng-repeat="section in data.selectedDataSetSections | paginationFilter: data.pagination.currentPage*data.pagination.pageSize | limitTo:data.pagination.pageSize">
+                    <div class="item item-divider">
+                        {{ section.name }}
+                    </div>
+                    <div class="item item-text-wrap">
+                        <div ng-include="'templates/entryFormPartials/entryFormSections.html'"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="spacer" style="width: 300px; height: 12px;"></div>
+        <div class="item item-text-wrap">
+            <div ng-include="'templates/entryFormPartials/pagination.html'"></div>
+        </div>
+
+        <div class="spacer" style="width: 300px; height: 17px;"></div>
+        <div class="item item-body " id="dataEntryForm-list-item-container20">
+            <div class="row">
+                <div class="col col-50" ng-if="!data.entryFormMetadata.isDataSetCompleted">
+                    <button class="button button-full button-balanced" ng-click="completeDataEntryForm()">Complete
+                    </button>
+                </div>
+                <div class="col col-50" ng-if="data.entryFormMetadata.isDataSetCompleted">
+                    <button class="button button-full button-assertive" ng-click="unCompleteDataEntryForm()">Undo
+                        Complete
+                    </button>
+                    <br>
+                </div>
+                <div class="col col-25">
+                    <button class="button button-full button-positive" ng-click="navigateToNewPagination(0,'')">First</button>
+                </div>
+                <div class="col col-25">
+                    <button class="button button-full button-positive" ng-click="navigateToNewPagination(0,'last')">Last
+                    </button>
+                </div>
+            </div>
+            <p  ng-if="data.entryFormMetadata.isDataSetCompleted" align="center">
+                Completed by: <b>{{ data.entryFormMetadata.dataSetCompleteness .name}}</b> at: <b>{{data.entryFormMetadata.dataSetCompleteness .date }}</b>
+            </p>
+        </div>
+    </ion-content>
+</ion-view>

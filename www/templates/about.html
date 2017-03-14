@@ -1,0 +1,42 @@
+<ion-view title="About" id="page9" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+        <ion-list id="about-list20" class=" ">
+            <ion-item class="item-divider " id="about-list-item-divider1">App Information</ion-item>
+        </ion-list>
+        <div class="item item-body " id="about-list-item-container21">
+            <p ng-repeat="(key,value) in data.appInformation">
+                <span><b style="margin-top:0px;color:#000000;">{{ key }}</b> : {{ data.appInformation[key] }}</span>
+            </p>
+        </div>
+
+        <ion-list id="about-list22" class=" ">
+            <ion-item class="item-divider " id="about-list-item-divider3">Storage information</ion-item>
+        </ion-list>
+        <div class="item item-body " id="about-list-item-container23">
+            <ion-list >
+                <ion-item class="item-divider " >DataValues Storage status</ion-item>
+            </ion-list>
+            <div class="item item-body ">
+                <p>
+                    <b style="margin-top:0px;color:#000000;">Synced</b> : {{ data.storageStatus.dataValues.synced.value }}&nbsp;&nbsp;
+                    <b style="margin-top:0px;color:#000000;">Not Synced</b> : {{ data.storageStatus.dataValues.unSynced.value }}
+                </p>
+
+            </div>
+        </div>
+
+        <ion-list id="about-list21" class=" ">
+            <ion-item class="item-divider " id="about-list-item-divider2">Server information</ion-item>
+        </ion-list>
+        <div class="item item-body " id="about-list-item-container22">
+            <div ng-repeat="(key,value) in data.systemInformation" ng-if = "key != 'userAgent'">
+                <h2>{{ getSystemInfoName(key) }}</h2>
+                <div ng-if = "key == 'databaseInfo'">
+                    <p  ng-repeat = "(k,v) in data.systemInformation[key]">{{ getSystemInfoName(k)  }} : {{ v }}</p>
+                </div>
+                <p ng-if = "key != 'databaseInfo'">{{ value }}</p>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

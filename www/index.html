@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src *; style-src &apos;self&apos; &apos;unsafe-inline&apos;; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;">
+    <title></title>
+
+    <script type="application/javascript" src="library/jquery/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="library/jquery/jquery.indexeddb.js"></script>
+    
+    
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+
+    <!-- additional styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="lib/angular-ui-notification/dist/angular-ui-notification.css" rel="stylesheet">
+    <link href="library/tooltipster/tooltipster.min.css" rel="stylesheet">
+    <link href="lib/angular-spinkit/angular-spinkit.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="library/jquery-ui/jqueryui-1.11.4/themes/base/jquery-ui.css">
+
+    
+
+    <style type="text/css">
+      .platform-ios .manual-ios-statusbar-padding{
+        padding-top:20px;
+      }
+      .manual-remove-top-padding{
+        padding-top:0px; 
+      }
+      .manual-remove-top-padding .scroll{
+        padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
+      }
+    </style>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/reportModule.js"></script>
+
+    <!-- Only required for Tab projects w/ pages in multiple tabs 
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+
+    <!-- additional scripts for app -->
+    <script src="lib/ng-storage/ngStorage.js"></script>
+    <script src="lib/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+
+    <script src="lib/angular-spinkit/angular-spinkit.min.js"></script>
+    <script src="library/tooltipster/jquery.tooltipster.js"></script>
+    <script type="text/javascript" src="library/jquery-ui/jqueryui-1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="library/ui-date/date.js"></script>
+
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.picker.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.plus.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.picker.ext.js"></script>
+
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.coptic.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.ethiopian.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.islamic.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.julian.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.nepali.min.js"></script>
+    <script type="text/javascript" src="library/dhis2/jQuery/calendars/jquery.calendars.thai.min.js"></script>
+    <script src="library/dhis2/dhis2.util.js"></script>
+    <script src="library/dhis2/dhis2.period.js"></script>
+    <script>
+      dhis2.period.calendar = $.calendars.instance('gregorian');
+      dhis2.period.generator = new dhis2.period.PeriodGenerator(dhis2.period.calendar, dhis2.period.DEFAULT_DATE_FORMAT);
+    </script>
+
+  </head>
+  <body ng-app="app" animation="slide-left-right" ng-controller="mainCtrl">
+  <div>
+    <div >
+        <ion-nav-bar class="bar-positive" >
+            <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view></ion-nav-view>
+    </div>
+</div>
+  </body>
+</html>

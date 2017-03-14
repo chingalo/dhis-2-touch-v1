@@ -1,0 +1,36 @@
+<ion-view title="Setting Details" id="page20" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+
+        <div ng-if="data.settings.currentSelected == 'synchronization'">
+            <ion-list  class=" ">
+                <ion-item class="item-divider ">Synchronization time</ion-item>
+            </ion-list>
+            <ion-list>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Synchronization time</span>
+                    <input type="number" placeholder="Synchronization time" min="1" ng-model="data.syncTime">
+                </label>
+                <ion-radio name ="synchronizationTime" ng-model="data.syncType" ng-value="'minutes'">Minute(s)</ion-radio>
+                <ion-radio name ="synchronizationTime" ng-model="data.syncType" ng-value="'hours'">Hour(s)</ion-radio>
+            </ion-list>
+        </div>
+        <div ng-if="data.settings.currentSelected == 'entryForm'">
+            <ion-list  class=" ">
+                <ion-item class="item-divider ">Form Label or Question title setting</ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-radio name ="formLabelPreference" ng-model="data.settings.entryForm.formLabelPreference" ng-value="'formName'">By Dhis 2 form name</ion-radio>
+                <ion-radio name ="formLabelPreference" ng-model="data.settings.entryForm.formLabelPreference" ng-value="'displayName'">By Dhis 2 display name</ion-radio>
+            </ion-list>
+        </div>
+        <div ng-if="data.settings.currentSelected == 'dataReset'">
+            <ion-list  class=" ">
+                <ion-item class="item-divider ">Data reset</ion-item>
+            </ion-list>
+        </div>
+        <button class="button button-full button-positive" ng-click="saveSetting()" ng-if="data.settings.currentSelected">
+            Save
+        </button>
+
+    </ion-content>
+</ion-view>

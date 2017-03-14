@@ -1,0 +1,31 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h2 class="title">Period selection</h2>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="periodModal.hide()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row">
+            <div class="col col-50">
+                <button class="button button-full button-positive" ng-click="changePeriodInterval('previous')">Previous</button>
+            </div>
+            <div class="col col-50">
+                <button class="button button-full button-positive" ng-click="changePeriodInterval('next')">Next</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-100">
+                <ion-list>
+                    <ion-item ng-repeat=" period in data.periodList"  ng-click="setSelectedPeriod(period)">
+                        {{ period.name }}
+                    </ion-item>
+                </ion-list>
+                <ion-item ng-if = "data.periodList.length == 0">
+                    There is no period to select
+                </ion-item>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

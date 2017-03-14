@@ -1,0 +1,58 @@
+.bar.bar-positive, .button .button-positive {
+    border-color: #1D5288;
+    background-color: #1D5288;
+}
+.menu-app-icon-list{
+    width: 70px;
+    max-height: 70px;
+}
+.menu-app {
+    text-align: center;
+}
+/*.button.button-positive {*/
+    /*border-color: #1D5288;*/
+    /*background-color: #1D5288;*/
+/*}*/
+
+/*.button.button-positive.active, .button.button-positive.activated {*/
+    /*border-color: #1D5288;*/
+    /*background-color: #1D5288;*/
+/*}*/
+
+#login-markdown3 {
+    font-style: italic;
+}
+
+.appPromo {
+    font-style: italic;
+    color: #ffffff;
+    margin-top: 10%;
+}
+
+.bar .title.title-left {
+    text-align: center !important;
+}
+
+.bar .title.title-right {
+    text-align: center !important;
+}
+
+.paginationScroll{
+    height:400px;
+    overflow:auto;
+}
+
+.item-body{
+    border-radius: 4px;
+}
+
+.tooltipSize {
+    padding: 10px;
+}
+.touch-area-selection{
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+

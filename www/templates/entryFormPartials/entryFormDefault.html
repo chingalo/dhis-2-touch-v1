@@ -1,0 +1,85 @@
+<div class="paginationScroll">
+    <div ng-repeat="dataElement in data.selectedDataSet.dataElements | paginationFilter: data.pagination.currentPage*data.pagination.pageSize| limitTo:data.pagination.pageSize" >
+        <div ng-repeat="categoryOptionCombos in dataElement.categoryCombo.categoryOptionCombos ">
+            <div ng-if = "isInteger(dataElement.valueType) && (!hasOptionSets(dataElement)) " >
+                <span class="tooltip tooltipSize" title="{{ dataElement.description }}" animation="fade"><b>{{ dataElement[data.formLabelPreference]?dataElement[data.formLabelPreference] : dataElement['displayName'] }}<span ng-if="dataElement.categoryCombo.name != 'default'">&nbsp;&nbsp;{{ categoryOptionCombos.name}}</span>&nbsp;&nbsp;</b> <i class="icon ion-ios-help-outline help-icons-data-entry" ng-show="dataElement.description"></i></b></span></span>
+                <br>
+                <label class="item item-input">
+                    <input ng-blur='changeDataEntryForm(dataElement)' type="number"
+                           placeholder="{{ dataElement.displayName }}"
+                           ng-model="data.entryFormMetadata.dataValues[dataElement.id + '-' +categoryOptionCombos.id]">
+                </label>
+            </div>
+            <div ng-if = "isIntegerZeroOrPositive(dataElement.valueType) && (!hasOptionSets(dataElement)) " >
+                <span class="tooltip tooltipSize" title="{{ dataElement.description }}" animation="fade"><b>{{ dataElement[data.formLabelPreference]?dataElement[data.formLabelPreference] : dataElement['displayName'] }}<span ng-if="dataElement.categoryCombo.name != 'default'">&nbsp;&nbsp;{{ categoryOptionCombos.name}}</span>&nbsp;&nbsp;</b> <i class="icon ion-ios-help-outline help-icons-data-entry" ng-show="dataElement.description"></i></b></span></span>
+                <br>
+                <label class="item item-input">
+                    <input ng-blur='changeDataEntryForm(dataElement)' type="number" min="0"
+                           placeholder="{{ dataElement.displayName }}"
+                           ng-model="data.entryFormMetadata.dataValues[dataElement.id + '-' +categoryOptionCombos.id]">
+                </label>
+            </div>
+            <div ng-if = "isString(dataElement.valueType) && (!hasOptionSets(dataElement)) " >
+                <span class="tooltip tooltipSize" title="{{ dataElement.description }}" animation="fade"><b>{{ dataElement[data.formLabelPreference]?dataElement[data.formLabelPreference] : dataElement['displayName'] }}<span ng-if="dataElement.categoryCombo.name != 'default'">&nbsp;&nbsp;{{ categoryOptionCombos.name}}</span>&nbsp;&nbsp;</b> <i class="icon ion-ios-help-outline help-icons-data-entry" ng-show="dataElement.description"></i></b></span></span>
+                <br>
+                <label class="item item-input">
+                    <input ng-blur='changeDataEntryForm(dataElement)' type="text"
+                           placeholder="{{ dataElement.displayName }}"
+                           ng-model="data.entryFormMetadata.dataValues[dataElement.id + '-' +categoryOptionCombos.id]">
+                </label>
+            </div>
+            <div ng-if="isDate(dataElement.valueType)">
+                <span class="tooltip tooltipSize" title="{{ dataElement.description }}" animation="fade"><b>{{ dataElement[data.formLabelPreference]?dataElement[data.formLabelPreference] : dataElement['displayName'] }}<span ng-if="dataElement.categoryCombo.name != 'default'">&nbsp;&nbsp;{{ categoryOptionCombos.name}}</span>&nbsp;&nbsp;</b> <i class="icon ion-ios-help-outline help-icons-data-entry" ng-show="dataElement.description"></i></b></span></span>
+                <br>
+                <label class="item item-input">
+                    <input ng-blur='changeDataEntryForm(dataElement)' type="text" ui-date
+                           placeholder="{{ dataElement.displayName }}"
+                           ng-model="data.entryFormMetadata.dataValues[dataElement.id + '-' +categoryOptionCombos.id]">
+                </label>
+            </div>
+            <div ng-if = "isBoolean(dataElement.valueType) && (!hasOptionSets(dataElement)) " >
+                <span class="tooltip tooltipSize" title="{{ dataElement.description }}" animation="fade"><b>{{ dataElement[data.formLabelPreference]?dataElement[data.formLabelPreference] : dataElement['displayName'] }}<span ng-if="dataElement.categoryCombo.name != 'default'">&nbsp;&nbsp;{{ categoryOptionCombos.name}}</span>&nbsp;&nbsp;</b> <i class="icon ion-ios-help-outline help-icons-data-entry" ng-show="dataElement.description"></i></b></span></span>
+                <br>
+                <div class="item item-input item-select">
+                    <div class="input-label">
+                    </div>
+                    <select ng-blur='changeDataEntryForm(dataElement)'
+                            ng-model="data.entryFormMetadata.dataValues[dataElement.id + '-' +categoryOptionCombos.id]">
+                        <option value="">Touch to choose option</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+            <div ng-if = "isTrueOnly(dataElement.valueType) && (!hasOptionSets(dataElement)) " >
+                <span class="tooltip tooltipSize" title="{{ dataElement.description }}" animation="fade"><b>{{ dataElement[data.formLabelPreference]?dataElement[data.formLabelPreference] : dataElement['displayName'] }}<span ng-if="dataElement.categoryCombo.name != 'default'">&nbsp;&nbsp;{{ categoryOptionCombos.name}}</span>&nbsp;&nbsp;</b> <i class="icon ion-ios-help-outline help-icons-data-entry" ng-show="dataElement.description"></i></b></span></span>
+                <br>
+                <div class="item item-input item-select">
+                    <div class="input-label">
+                    </div>
+                    <select ng-blur='changeDataEntryForm(dataElement)'
+                            ng-model="data.entryFormMetadata.dataValues[dataElement.id + '-' +categoryOptionCombos.id]">
+                        <option value="">Touch to choose option</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+            </div>
+            <div ng-if = "hasOptionSets(dataElement) " >
+                <span class="tooltip tooltipSize" title="{{ dataElement.description }}" animation="fade"><b>{{ dataElement[data.formLabelPreference]?dataElement[data.formLabelPreference] : dataElement['displayName'] }}<span ng-if="dataElement.categoryCombo.name != 'default'">&nbsp;&nbsp;{{ categoryOptionCombos.name}}</span>&nbsp;&nbsp;</b> <i class="icon ion-ios-help-outline help-icons-data-entry" ng-show="dataElement.description"></i></b></span></span>
+                <br>
+                <div class="item item-input item-select">
+                    <div class="input-label">
+                    </div>
+                    <select ng-blur='changeDataEntryForm(dataElement)'
+                            ng-options="item.name for item in getOptionSets(dataElement) track by item.code"
+                            ng-model="data.entryFormMetadata.dataValues[dataElement.id + '-' +categoryOptionCombos.id]">
+                        <option value="">Touch to choose option</option>
+                    </select>
+                </div>
+
+            </div>
+            <br>
+        </div>
+        <br>
+    </div>
+</div>

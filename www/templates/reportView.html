@@ -1,0 +1,11 @@
+<ion-view title="Report View" id="page16" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+        <ion-list >
+            <ion-item class="item-divider ">{{ data.selectedReport.name }}</ion-item>
+        </ion-list>
+        <div class="item item-body">
+            <div ng-bind-html="data.selectedReport.designContent | to_trusted_html"></div>
+        </div>
+        <div class="spacer" style="width: 300px; height: 33px;"></div>
+    </ion-content>
+</ion-view>

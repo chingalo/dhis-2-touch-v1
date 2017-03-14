@@ -1,0 +1,19 @@
+<div class="row" ng-repeat="programTrackedEntityAttribute in data.program_tracked_entity_attributes" >
+    <div class="col col-100">
+        <div class="list">
+            <div ng-if="programTrackedEntityAttribute.trackedEntityAttribute.optionSet">
+                <div class="item item-input item-select" >
+                    <div class="input-label">
+                        <select>
+                            <option  value="">{{ programTrackedEntityAttribute.trackedEntityAttribute.displayName }}</option>
+                            <option ng-repeat="option in programTrackedEntityAttribute.trackedEntityAttribute.optionSet.options" value="" >{{ option.displayName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <label class="item item-input" ng-if="!programTrackedEntityAttribute.trackedEntityAttribute.optionSet">
+                <input type="text" placeholder="{{ programTrackedEntityAttribute.trackedEntityAttribute.displayName }}">
+            </label>
+        </div>
+    </div>
+</div>

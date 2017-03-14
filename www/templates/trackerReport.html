@@ -1,0 +1,42 @@
+<ion-view title="Tracker Capture" id="page12" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+        <div class="row">
+            <div class="col col-50">
+                <button class="button button-full button-positive" ng-click="trackerRegistrationHome()">
+                    Registration
+                </button>
+            </div>
+            <div class="col col-50">
+                <button class="button button-full button-positive" ng-click="trackerReport()">
+                    Reports
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+                <ion-list>
+                    <ion-item class="item-icon-left item-icon-right" ng-click="programSummary()">
+                        <i class="icon ion-android-list"></i>
+                        Program Summary
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </ion-item>
+                    <ion-item class="item-icon-left item-icon-right" ng-click="programStatistics()">
+                        <i class="icon ion-stats-bars"></i>
+                        Program Statistics
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </ion-item>
+                    <ion-item class="item-icon-left item-icon-right" ng-click="upcomingEvents()">
+                        <i class="icon ion-ios-clock-outline"></i>
+                        Upcoming Events
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </ion-item>
+                    <ion-item class="item-icon-left item-icon-right" ng-click="overdueEvents()">
+                        <i class="icon ion-ios-bell-outline"></i>
+                        Overdue Events
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

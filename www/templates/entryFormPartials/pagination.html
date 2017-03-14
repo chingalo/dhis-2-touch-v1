@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col col-47">
+        <button class="button button-full button-positive" ng-disabled="data.pagination.currentPage == 0"
+                ng-click="navigateToNewPagination(data.pagination.currentPage-1,'')">
+            Previous
+        </button>
+    </div>
+    <div class="col col-6">
+        <button class="button button-full button-clear">
+                 <span>
+                    <b>{{ data.pagination.currentPage+1}}/{{data.pagination.numberOfPages }}</b>
+                 </span>
+        </button>
+    </div>
+    <div class="col col-47">
+        <button class="button button-full button-positive"
+                ng-disabled="data.pagination.currentPage >= data.pagination.numberOfPages - 1"
+                ng-click="navigateToNewPagination(data.pagination.currentPage +1,'')">
+            Next
+        </button>
+    </div>
+</div>

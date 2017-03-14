@@ -1,0 +1,36 @@
+<ion-view title="login" hide-nav-bar="true" hide-back-button="true" id="page4" style="background-color:#1D5288;"
+          class=" ">
+    <ion-content padding="true" class="manual-ios-statusbar-padding">
+        <form id="login-form1" class="list ">
+            <div class="spacer" style="width: 300px; height: 82px;"></div>
+            <div class="">
+                <img src="img/hcLc5CCNTAShFqAGkJOA_dhis2-logo.png" width="100%" height="auto"
+                     style="display: block; margin-left: auto; margin-right: auto;">
+            </div>
+            <p id="login-markdown3" style="color:#82B1FF;text-align:center;font-style: italic" class=" ">Routine and survey data on your
+                pocket</p>
+            <ion-list id="login-list2" class=" ">
+                <label class="item item-input">
+                    <i class="icon ion-earth placeholder-icon"></i>
+                    <input type="text" placeholder="Enter Server URL" ng-model="data.baseUrl">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-person placeholder-icon"></i>
+                    <input type="text" placeholder="Username" ng-model="data.user.username">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-locked placeholder-icon"></i>
+                    <input type="password" placeholder="Password" ng-model="data.user.password">
+                </label>
+                <button type="button" ng-click="onClickLoginButton()" class="button button-positive  button-block">
+                    Log in
+                </button>
+            </ion-list>
+            <div class="row">
+                <div class="col col 100" style="text-align: center;margin-bottom:5%;">
+                    <p class="appPromo">Powered by Hisptz</p>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

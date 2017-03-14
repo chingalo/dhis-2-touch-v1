@@ -1,0 +1,66 @@
+<ion-view title="Program Summary" style="background-color:#F5F5F5;">
+    <ion-content padding="true" class="has-header">
+        <div class="row">
+            <div class="col col-100">
+                <h4>Program Summary Report</h4>
+            </div>
+        </div>
+        <div class="row" ng-click="organisationUnitsModal.show()" style="padding-top: 0.5%;">
+            <div class="col col-100">
+                <h5>Organisation Unit</h5>
+                <div class="touch-area-selection">
+                    <p ng-if ="data.selectedOrganisationUnit.id">
+                        {{ data.selectedOrganisationUnit.name }}
+                    </p>
+                    <p ng-if ="!data.selectedOrganisationUnit.id">
+                        Tap to Select Organisation Unit
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-click="trackerProgramModal.show()" style="padding-top: 0.5%;">
+            <div class="col col-100">
+                <h5>Program</h5>
+                <div class="touch-area-selection">
+                    <p ng-if ="data.selectedProgram.id">
+                        {{ data.selectedProgram.name }}
+                    </p>
+                    <p ng-if ="!data.selectedProgram.id">
+                        Tap to Select Program
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+                <h5>Organisation Unit Scope</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+                <ion-list>
+                    <ion-radio ng-model="choice" ng-value="'selected'">Selected</ion-radio>
+                    <ion-radio ng-model="choice" ng-value="'immediate_children'">Immediate Children</ion-radio>
+                    <ion-radio ng-model="choice" ng-value="'all_children'">All Children</ion-radio>
+                </ion-list>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-40">
+				<span>&nbsp;&nbsp;Start date</span>
+				<label class="item item-input">
+				    <input type="date"  ng-model="data.startDate" >
+				</label>
+            </div>
+            <div class="col col-40">
+				<span>&nbsp;&nbsp;End date</span>
+				<label class="item item-input">
+				    <input type="date" ng-model="data.endDate" >
+				</label>
+            </div>
+            <div class="col col-20" style="margin-top: 5%">
+                <button class="button button-positive ">Go</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

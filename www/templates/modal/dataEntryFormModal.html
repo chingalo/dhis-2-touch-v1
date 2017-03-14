@@ -1,0 +1,32 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h2 class="title">Data Entry Form selection</h2>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="dataEntryFormModal.hide()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+
+        <div class="row">
+            <div class="col col-100">
+                <label class="item item-input">
+                    <i class="icon ion-ios-search-strong placeholder-icon"></i>
+                    <input ng-model="search" type="search" placeholder="Search Data Entry Form ">
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-100">
+                <ion-list>
+                    <ion-item ng-repeat=" assignedDataSetForm in data.assignedDataSetForms|filter: {name  :search}"  ng-click="setSelectedDataSetForm(assignedDataSetForm)">
+                        {{ assignedDataSetForm.name }}
+                    </ion-item>
+                    <ion-item ng-if = "data.assignedDataSetForms.length == 0">
+                        There is no Data entry form to select
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

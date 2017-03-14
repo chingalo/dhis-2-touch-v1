@@ -1,0 +1,45 @@
+<ion-view title="Report Parameter Selection" id="page15" style="background-color:#F5F5F5;" class=" ">
+    <ion-content padding="true" class="has-header">
+        <ion-list >
+            <ion-item class="item-divider ">{{ data.selectedReport.name }}</ion-item>
+        </ion-list>
+        <div class="item item-body " id="reportParameterSelection-list-item-container4">
+            <div class="row" ng-click="organisationUnitsModal.show()" style="padding-top: 1%;" ng-if = "data.selectedReport.reportParams.paramOrganisationUnit" >
+                <div class="col col-100">
+                    <h3>Organisation Unit</h3>
+                    <div class = "touch-area-selection">
+                        <p ng-if ="data.selectedOrganisationUnit.id">
+                            {{ data.selectedOrganisationUnit.name }}
+                        </p>
+                        <p ng-if ="!data.selectedOrganisationUnit.id">
+                            Touch to select Organisation Unit
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer" style="width: 267.333px; height: 14px;"></div>
+            <div class="row" ng-click="periodModal.show()" style="padding-top: 1%;" ng-if = "data.selectedReport.reportParams.paramReportingPeriod" >
+                <div class="col col-100">
+                    <h3>Period</h3>
+                    <div class = "touch-area-selection">
+                        <p ng-if ="data.selectedPeriod.name">
+                            {{ data.selectedPeriod.name }}
+                        </p>
+                        <p ng-if ="!data.selectedPeriod.name">
+                            Touch to select period
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--generateReport-->
+            <div class="row">
+                <div class="col col-100">
+                    <button class="button button-full button-positive" ng-click="generateReport()">Generate Report</button>
+                </div>
+            </div>
+        </div>
+        <div id="reportParameterSelection-button-bar1" class=" button-bar "></div>
+
+    </ion-content>
+</ion-view>

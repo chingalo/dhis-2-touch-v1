@@ -1,0 +1,32 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h2 class="title">Data Entry Form Dimension selection</h2>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="dataSetFormDimensionModal.hide()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+
+        <div class="row">
+            <div class="col col-100">
+                <label class="item item-input">
+                    <i class="icon ion-ios-search-strong placeholder-icon"></i>
+                    <input ng-model="search" type="search" placeholder="Search Data Entry Form Dimension">
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-100">
+                <ion-list>
+                    <ion-item ng-repeat=" categoryOption in data.selectedDataSetForm.categoryCombo.categories[data.dataDimensionIndex].categoryOptions|filter: {name  :search}"  ng-click="setSelectedDataSetFormDataDimension(data.dataDimensionIndex,categoryOption)">
+                        {{ categoryOption.name }}
+                    </ion-item>
+                </ion-list>
+                <ion-item ng-if = "data.selectedDataSetForm.categoryCombo.categories[data.dataDimensionIndex].categoryOptions.length == 0">
+                    There is no Data entry form category option to select
+                </ion-item>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>
