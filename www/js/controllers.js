@@ -354,7 +354,7 @@ angular.module('app.controllers', [])
          */
         function downloadingDataSets() {
             var resource = "dataSets";
-            var fields = "id,name,timelyDays,formType,version,periodType,openFuturePeriods,expiryDays,dataElements[id,name,displayName,description,formName,attributeValues[value,attribute[name]],valueType,optionSet[name,options[name,id,code]],categoryCombo[id,name,categoryOptionCombos[id,name]]],organisationUnits[id,name],sections[id],indicators[id,name,indicatorType[factor],denominatorDescription,numeratorDescription,numerator,denominator],categoryCombo[id,name,categoryOptionCombos[id,name,categoryOptions[id]],categories[id,name,categoryOptions[id,name]]]";
+            var fields = "id,name,timelyDays,formType,version,periodType,openFuturePeriods,expiryDays,dataSetElements[dataElement[id,name,displayName,description,formName,attributeValues[value,attribute[name]],valueType,optionSet[name,options[name,id,code]],categoryCombo[id,name,categoryOptionCombos[id,name]]]],dataElements[id,name,displayName,description,formName,attributeValues[value,attribute[name]],valueType,optionSet[name,options[name,id,code]],categoryCombo[id,name,categoryOptionCombos[id,name]]]organisationUnits[id,name],sections[id],indicators[id,name,indicatorType[factor],denominatorDescription,numeratorDescription,numerator,denominator],categoryCombo[id,name,categoryOptionCombos[id,name,categoryOptions[id]],categories[id,name,categoryOptions[id,name]]]";
             setProgressMessage('Downloading data sets');
             systemFactory.downloadMetadata(resource, null, fields).then(function (dataSets) {
                 //success on downloading
@@ -1068,6 +1068,7 @@ angular.module('app.controllers', [])
                 setProgressMessage('Loading data entry form sections');
                 sqlLiteFactory.getDataFromTableByAttributes(resource, "id", ids).then(function (sections) {
                     var sectionsObject = getSectionsObject(sections);
+                  //alert(JSON.stringify(sectionsObject[sections[0].id]));
                     $scope.data.selectedDataSet.sections.forEach(function (section) {
                         $scope.data.selectedDataSetSections.push(sectionsObject[section.id]);
                     });
@@ -1296,14 +1297,16 @@ angular.module('app.controllers', [])
                 if (modelValue[0] == dataElement.id) {
                     var value = $scope.data.entryFormMetadata.dataValues[key];
                     if ($scope.data.entryFormMetadata.dataValues[key]) {
-                        var dataValue = {
-                            categoryOptionCombo: modelValue[1],
-                            dataElement: modelValue[0],
-                            value: value
-                        };
+                      var dataValue = {
+                        categoryOptionCombo: modelValue[1],
+                        dataElement: modelValue[0],
+                        value: value,
+                        valueType : dataElement.valueType
+
+                      };
                         saveIndividualDataValue(dataValue);
                         if (dataElement.attributeValues.length > 0) {
-                            extendDataElementFunctions(dataElement, value);
+                            //extendDataElementFunctions(dataElement, value);
                         }
                     }
                 }
@@ -1379,7 +1382,10 @@ angular.module('app.controllers', [])
             }else{
                 value = dataValue.value;
             }
-            value = String($scope.isDate($scope.data.entryFormMetadata.dataElements[dataValue.dataElement].valueType)? formatDate(value):value);
+
+          //$scope.data.entryFormMetadata.dataElements[dataValue.dataElement]
+
+            value = String($scope.isDate(dataValue.valueType)? formatDate(value):value);
             var data = {
                 id: id,
                 de: dataValue.dataElement,
@@ -1645,7 +1651,7 @@ angular.module('app.controllers', [])
                 Name: 'DHIS 2 Touch',
                 Version: '1.04',
                 'App revision': 'b2f4332',
-                'Release status': 'Snapshot'
+                'Release status': 'Release'
                 //'Release' 'Snapshot'
             },
             systemInformation: {},
@@ -1944,7 +1950,7 @@ angular.module('app.controllers', [])
                 $scope.data.trackedEntityInstances = result;
                 hideProgressMessage();
             },function(error){
-                alert('Fail');
+                //alert('Fail');
                 hideProgressMessage();
             });
         };
@@ -2599,7 +2605,7 @@ angular.module('app.controllers', [])
             }else if($scope.data.settings.currentSelected == "entryForm"){
                 setFormLabelPreference();
             }else if($scope.data.settings.currentSelected == "dataReset"){
-                alert('dataReset');
+                console.log('dataReset');
             }
         }
 
@@ -2633,7 +2639,6 @@ angular.module('app.controllers', [])
                     newValue = newValue * 60  * 1000;
                     break;
                 case 'hours':
-                    alert($scope.data.syncType);
                     newValue = newValue * 60 * 60 * 1000;
                     break;
             }
@@ -2660,7 +2665,7 @@ angular.module('app.controllers', [])
             }else if($scope.data.settings.currentSelected == "entryForm"){
                 saveFormLabelPreference();
             }else if($scope.data.settings.currentSelected == "dataReset"){
-                alert('dataReset');
+                //alert('dataReset');
             }
             $ionicHistory.goBack();
         }
