@@ -117,8 +117,11 @@ dhis2.de = {
       .done(function (item) {
         if (item) {
           var val = item.value;
+          if(uncleanedValues.indexOf(item.value)){
+
+          }
           if(isNaN(new Number(item.value))){
-            console.log("NAN2:" +JSON.stringify(item));
+            //console.log("NAN2:" +JSON.stringify(item));
           }
           if (val && dhis2.validation.isNumber(val)) {
             defer.resolve(new Number(item.value), match);
@@ -136,7 +139,9 @@ dhis2.de = {
     dhis2.sqlLiteServices.getDataFromTableById('constants', constantId)
       .done(function (constant) {
         var testConstants = ["yIO2TSCXdO0","E4VL9sMDC4S"];
+        //console.log("constant : " + JSON.stringify(constant));
         if(testConstants.indexOf(constantId) > -1){
+
         }
         if (constant) {
           var val = constant.value;
@@ -253,9 +258,11 @@ dhis2.de = {
               var message = "This report has no data. To view the report with data, open data entry form related to this report to download existing data or to enter new data";
               dhis2.progressMessageStick(message);
             }
+            //console.log("Results1 : " + JSON.stringify(data.rows));
             defer.resolve(data);
           });
         } else {
+          //console.log("Results2 : " + JSON.stringify(data.rows));
           defer.resolve(data);
         }
       });

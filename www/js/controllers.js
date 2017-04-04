@@ -154,14 +154,14 @@ angular.module('app.controllers', [])
   .controller('appsCtrl', function ($scope) {
 
     $scope.onSwipeLeft = function () {
-      console.log('onSwipeLeft');
+      //console.log('onSwipeLeft');
     }
 
   })
 
   .controller('accountCtrl', function ($scope) {
     $scope.onSwipeRight = function () {
-      console.log('onSwipeRight');
+      //console.log('onSwipeRight');
     }
   })
 
@@ -245,7 +245,7 @@ angular.module('app.controllers', [])
                   angular.forEach(sqlLiteFactory.getDataBaseStructure(), function (table, tableName) {
                     promises.push(
                       sqlLiteFactory.createTable(tableName, table.fields).then(function () {
-                        console.log('create table :: ' + tableName);
+                        //console.log('create table :: ' + tableName);
                       }, function () {
                         Notification('Fail create table :: ' + tableName);
                       })
@@ -1023,7 +1023,7 @@ angular.module('app.controllers', [])
           setProgressMessage('Loading data entry form details');
           loadingDataSetDetailsFromStorage();
         } else {
-          console.log('Please make sure you select data set');
+          //console.log('Please make sure you select data set');
           hideProgressMessage();
         }
       }, function () {
@@ -1122,9 +1122,10 @@ angular.module('app.controllers', [])
           } else {
             loadingDataValuesFromLocalStorage();
           }
-        }, function () {
+        }, function (error) {
           loadingDataValuesFromLocalStorage();
           Notification('Fail to download data values from the server');
+          alert(JSON.stringify(error));
         });
       }
 
@@ -1142,6 +1143,7 @@ angular.module('app.controllers', [])
       var orgUnitId = $scope.data.dataEntryFormParameter.organisationUnitId;
       var index = 1;
       dataValues.forEach(function (dataValue) {
+
         var data = {
           id: dataSetId + '-' + dataValue.dataElement + '-' + dataValue.categoryOptionCombo + '-' + period + '-' + orgUnitId,
           de: dataValue.dataElement,
@@ -1154,6 +1156,7 @@ angular.module('app.controllers', [])
           syncStatus: 'synced',
           dataSetId: dataSetId
         };
+        //console.log("Saving  : " + JSON.stringify(data));
         promises.push(
           sqlLiteFactory.insertDataOnTable(resource, data).then(function () {
             var savingPercentage = ((index / dataValues.length) * 100).toFixed(2);
@@ -1384,7 +1387,7 @@ angular.module('app.controllers', [])
         value = dataValue.value;
       }
 
-      console.log("saved " + value);
+      //console.log("saved " + value);
 
       //$scope.data.entryFormMetadata.dataElements[dataValue.dataElement]
 
@@ -1442,11 +1445,11 @@ angular.module('app.controllers', [])
 
           //for brn data boolean score values
           var correctScoreValue = null;
-          console.log('input values ' + dataElementValue);
+          //console.log('input values ' + dataElementValue);
           angular.forEach(dataElement.scoreValues, function (scoreValue) {
             if (dataElementValue.toString() == scoreValue.value.toString()) {
               correctScoreValue = scoreValue.figure;
-              console.log('correctScoreValue obtained : ' + correctScoreValue);
+              //console.log('correctScoreValue obtained : ' + correctScoreValue);
             }
           });
         }
@@ -1795,7 +1798,7 @@ angular.module('app.controllers', [])
 
     $scope.$on("$ionicView.afterEnter", function (event, data) {
       $timeout(function () {
-        console.log("dashboard")
+        //console.log("dashboard")
       }, 100);
     });
   })
@@ -2117,7 +2120,7 @@ angular.module('app.controllers', [])
      */
     $scope.setSelectedReport = function(reportId){
       var report = $scope.data.reportListObject[reportId];
-      console.log(report);
+      //console.log(report);
       $localStorage.app.report = {};
       $localStorage.app.report.selectedReport ={
         id : reportId,
@@ -2237,7 +2240,7 @@ angular.module('app.controllers', [])
         dataSets: sortedOrganisationUnit.dataSets
       };
       var dataSetArray = [];
-      console.log($scope.data.selectedOrganisationUnit);
+      //console.log($scope.data.selectedOrganisationUnit);
       $scope.organisationUnitsModal.hide();
       //loading data set list
     };
@@ -2427,7 +2430,7 @@ angular.module('app.controllers', [])
 
     $scope.generateReport = function(){
       if(isReportParameter()){
-        console.log(JSON.stringify($localStorage.app.report.reportMetadata));
+        //console.log(JSON.stringify($localStorage.app.report.reportMetadata));
         $state.go('tabsController.reportView', {}, {});
       }else{
         Notification('Please select report parameter(s)');
@@ -2484,7 +2487,7 @@ angular.module('app.controllers', [])
       } else {
         $scope.hasOrgUnitChildrenOpened[orgUnit.id] = true;
       }
-    }
+    };
 
 
     /**
@@ -2612,7 +2615,7 @@ angular.module('app.controllers', [])
       }else if($scope.data.settings.currentSelected == "entryForm"){
         setFormLabelPreference();
       }else if($scope.data.settings.currentSelected == "dataReset"){
-        console.log('dataReset');
+        //console.log('dataReset');
       }
     }
 
@@ -2680,6 +2683,6 @@ angular.module('app.controllers', [])
 
   .controller('updateManagerCtrl', function ($scope) {
     $scope.$on("$ionicView.afterEnter", function (event, data) {
-      console.log('update manager view has been loaded successfully');
+      //console.log('update manager view has been loaded successfully');
     });
   });

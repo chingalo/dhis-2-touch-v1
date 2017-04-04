@@ -98,7 +98,7 @@ angular.module('app.services', [])
             authenticateUser: function () {
                 var defer = $q.defer();
                 var fields = "fields=[:all],userCredentials[userRoles[name,dataSets[id,name],programs[id,name]]";
-                $http.get($localStorage.app.baseUrl + '/api/me.json?' + fields).then(function (response) {
+                $http.get($localStorage.app.baseUrl + '/api/25/me.json?' + fields).then(function (response) {
                     defer.resolve(response.data);
                 }, function (error) {
                     defer.reject(error.status);
@@ -532,7 +532,7 @@ angular.module('app.services', [])
         var systemFactory = {
             getDhis2InstanceSystemInfo: function () {
                 var defer = $q.defer();
-                $http.get($localStorage.app.baseUrl + '/api/system/info').then(function (response) {
+                $http.get($localStorage.app.baseUrl + '/api/25/system/info').then(function (response) {
                     defer.resolve(response.data);
                 }, function (error) {
                     console.log('error', error);
@@ -542,7 +542,7 @@ angular.module('app.services', [])
             },
             downloadMetadata: function (resource, resourceId, fields, filter) {
                 var defer = $q.defer();
-                var url = $localStorage.app.baseUrl + '/api/' + resource;
+                var url = $localStorage.app.baseUrl + '/api/25/' + resource;
                 if (resourceId || resourceId != null) {
                     url += "/" + resourceId + ".json?paging=false";
                 } else {
@@ -563,7 +563,7 @@ angular.module('app.services', [])
             },
             getTrackedEntityInstances: function(ouId, programId) {
                 var defer = $q.defer();
-                var url = $localStorage.app.baseUrl + '/api/trackedEntityInstances/query.json?ou=' + ouId + '&program=' + programId;
+                var url = $localStorage.app.baseUrl + '/api/25/trackedEntityInstances/query.json?ou=' + ouId + '&program=' + programId;
                 $http.get(url).then(function (response) {
                     defer.resolve(response.data);
                 }, function (error) {
@@ -588,7 +588,7 @@ angular.module('app.services', [])
             },
             completeOnDataSetRegistrations:function(parameter){
                 var defer = $q.defer();
-                $http.post($localStorage.app.baseUrl+'/api/completeDataSetRegistrations?'+parameter,null)
+                $http.post($localStorage.app.baseUrl+'/api/25/completeDataSetRegistrations?'+parameter,null)
                     .then(function(){
                         //success
                         defer.resolve();
@@ -600,7 +600,7 @@ angular.module('app.services', [])
             },
             unDoCompleteOnDataSetRegistrations:function(parameter){
                 var defer = $q.defer();
-                $http.delete($localStorage.app.baseUrl+'/api/completeDataSetRegistrations?'+parameter,null)
+                $http.delete($localStorage.app.baseUrl+'/api/25/completeDataSetRegistrations?'+parameter,null)
                     .then(function(){
                         //success
                         defer.resolve();
@@ -620,13 +620,13 @@ angular.module('app.services', [])
             getDataValueSet:function(dataSet,period,orgUnit,attributeOptionCombo){
                 var defer = $q.defer();
                 var parameter = 'dataSet='+dataSet+'&period='+period+'&orgUnit='+orgUnit;
-                $http.get(baseUrl + '/api/dataValueSets.json?'+parameter)
+                $http.get(baseUrl + '/api/25/dataValueSets.json?'+parameter)
                     .success(function(results){
                         dataValuesFactory.getFilteredDataValuesByDataSetAttributeOptionCombo(results.dataValues,attributeOptionCombo).then(function(FilteredDataValues){
                             defer.resolve(FilteredDataValues);
                         });
                     })
-                    .error(function(){
+                    .error(function(error){
                         defer.reject();
                     });
                 return defer.promise;
@@ -684,7 +684,7 @@ angular.module('app.services', [])
                 if(dataValues.length > 0){
                     var resource = "dataValues";
                     formattedDataValues.forEach(function(formattedDataValue,index){
-                        $http.post(baseUrl+'/api/dataValues?'+formattedDataValue,null).then(function(){
+                        $http.post(baseUrl+'/api/25/dataValues?'+formattedDataValue,null).then(function(){
                             dataValues[index].syncStatus = "synced";
                             sqlLiteFactory.insertDataOnTable(resource,dataValues[index]).then(function(){
                             },function(){
